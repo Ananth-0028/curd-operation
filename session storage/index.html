@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>step1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>mluti step session storage</h1>
+        <h2>personal-1 detail</h2>
+        <form >
+            <label for="name">Name:</label>
+            <input type="text" id="name" placeholder="Full name"><br>
+
+            <label for="email"> email:</label>
+            <input type="text" id="email" placeholder="Email"><br>
+            <button type="button" id="btnStep1Next">NEXT STEP</button>
+        </form>
+    </div>
+
+<script>
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const btnStep1Next = document.getElementById("btnStep1Next");
+
+    function load() {
+        const data = JSON.parse(sessionStorage.getItem("formData")) || {};
+        if (data) {
+            name.value = data.name || "";
+            email.value = data.email || "";
+        }
+    }
+    
+    load();
+
+    btnStep1Next.addEventListener("click", function() {
+        if (name.value !== "" && email.value !== null) {
+            const formData = JSON.parse(sessionStorage.getItem("formData")) || {};
+            formData.name = name.value;
+            formData.email = email.value;
+            sessionStorage.setItem("formData", JSON.stringify(formData));
+            window.location.href = "http://127.0.0.1:5500/session%20storage/index2.html";
+        } else {
+            alert("Please fill in the data.");
+            name.focus();
+        }
+    });
+</script>
+
+    
+</body>
+</html>

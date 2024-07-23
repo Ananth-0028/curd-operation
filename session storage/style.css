@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+body{
+    background-color:chocolate;
+    width: 100vw;height: 100vh;
+    display: grid;
+    place-items: center;
+    gap: 30px;
+
+}
+#name{
+    display: flex;
+    gap:30px
+
+}
+#email{
+    display: flex;
+    gap:30px
+
+}
+#address{
+    display: flex;
+    gap:30px
+
+}
+#phone{
+    display: flex;
+    gap:30px
+
+}

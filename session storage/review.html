@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Multi Form Session Storage</h1>
+        <h2>Personal Form Detail</h2>
+        <table id="tableList">
+        </table>
+        <button type="button" id="btnStep2Back">Back Step</button>
+        <button type="button" id="btnConfirmation">Confirmation Success</button>
+    </div>
+
+    <script>
+        const btnStep2Back = document.getElementById("btnStep2Back");
+        const tableList = document.getElementById("tableList");
+        const btnConfirmation = document.getElementById("btnConfirmation");
+
+        btnStep2Back.addEventListener("click", function() {
+            window.location.href = "http://127.0.0.1:5500/session%20storage/index2.html";
+        });
+
+        btnConfirmation.addEventListener("click", function() {
+            alert("Confirmation Success!"); 
+        });
+
+        function load() {
+            const data = JSON.parse(sessionStorage.getItem("formData")) || {};
+            let output = `
+                <tr>
+                    <th>Name:</th>
+                    <td>${data.name || 'Not provided'}</td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td>${data.email || 'Not provided'}</td>
+                </tr>
+                <tr>
+                    <th>Address:</th>
+                    <td>${data.address || 'Not provided'}</td>
+                </tr>
+                <tr>
+                    <th>Contact:</th>
+                    <td>${data.phone || 'Not provided'}</td>
+                </tr>`;
+            
+            tableList.innerHTML = output;
+        }
+
+        load(); 
+    </script>
+</body>
+</html>

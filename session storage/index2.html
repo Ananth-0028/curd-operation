@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>step2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>mluti step session storage</h1>
+        <h2>ADDRESS-2 detail</h2>
+        <form >
+            <label for="address">Address:</label><br>
+            <input type="text" id="address" placeholder="Address"><br>
+
+            <label for="phone"> Phone NO:</label><br>
+            <input type="text" id="phone" placeholder="Phone no"><br>
+        
+            <button type="button" id="btnStep1Back">Back STEP</button>
+            <button type="button" id="btnStep2Back">Next STEP</button>
+
+        </form>
+    </div>
+
+        <script>
+        const address = document.getElementById("address");
+        const phone = document.getElementById("phone");
+        const btnStep1Back = document.getElementById("btnStep1Back");
+        const btnStep2Next = document.getElementById("btnStep2Next");
+
+        function load() {
+        const data = JSON.parse(sessionStorage.getItem("formData")) || {};
+        if (data) {
+            address.value = data.adress == undefined ?"":data.address;
+            phone.value = data.phone == undefined ?"":data.phone;
+        }
+    }
+    load();
+
+
+        btnStep1Back.addEventListener("click", function() {
+            window.location.href = "http://127.0.0.1:5500/session%20storage/index.html";
+        });
+        btnStep2Back.addEventListener("click",function(){
+            if (address.value !== "" && phone.value !== null) {
+            const formData = JSON.parse(sessionStorage.getItem("formData")) || {};
+            formData.address = address.value;
+            formData.phone = phone.value;
+            sessionStorage.setItem("formData", JSON.stringify(formData));
+            window.location.href = "http://127.0.0.1:5500/session%20storage/review.html";
+        } else {
+            alert("Please fill in the data.");
+            address.focus();
+        }
+        })
+
+       
+    </script>
+
+    </script>
+</body>
+</html>
